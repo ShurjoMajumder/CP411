@@ -1,7 +1,6 @@
 #include "GL/glew.h"
 #include "GL/glut.h"
 
-#include <GL/freeglut.h>
 #include <stdlib.h>
 
 static int slices = 16;
