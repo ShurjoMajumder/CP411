@@ -19,4 +19,3 @@ add_custom_command(TARGET c_cube POST_BUILD            # Adds a post-build event
         "C:/dev/CP411/bin/Release/x64/freeglut.dll"    # <-- target to copy
         $<TARGET_FILE_DIR:c_cube>                      # <-- this is the output path
 )
-
