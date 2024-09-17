@@ -1,0 +1,139 @@
+<h2 id="framebuffers">1.1 Framebuffers</h2>
+<p><strong>Framebuffer:</strong> A memory block that stores data of all
+pixels of raster pattern line by line. Each dot of an image has a
+corresponding position in the memory, the value stored in the memory
+position represents the data, e.g. color, of the dot.</p>
+<h2 id="pixels-color-depth-resolution">1.2 Pixels, Color Depth, &amp;
+Resolution</h2>
+<dl class="incremental">
+<dt><strong>Pixel:</strong> A ‘dot’ in a raster pattern, or a pixel on a
+screen.</dt>
+<dd>
+Any of the small discrete elements that together constitute an image (as
+on a television or digital screen) (<a
+href="https://www.merriam-webster.com/dictionary/pixel">source</a>)
+</dd>
+</dl>
+<p><strong>Color Depth:</strong> The number of bits taken by a pixel,
+typically 1, 8, 16, 24, 32, or 64 bits. Includes RGB, BGR, RGBA, ARGB,
+etc. color formats.</p>
+<p><strong>Resolution:</strong> The <code>X</code> by <code>Y</code>
+dimensions of the output, typically the <a
+href="#11-framebuffers">framebuffer</a> or an output device such as an
+LED display. The first number is the size of a row in pixels, and the
+second number is the number of rows.</p>
+<h2 id="frame-refreshment-refresh-rate">1.3 Frame, Refreshment, &amp;
+Refresh Rate</h2>
+<p>A frame refers to a full scan and display of image on screen.</p>
+<ul class="incremental">
+<li>A frame must be “refreshed” to draw new images</li>
+<li>On a CRT display:
+<ul class="incremental">
+<li>As new pixels are struck by electron beam, others are decaying -
+Electron beam must hit all pixels frequently to eliminate flicker.</li>
+</ul></li>
+</ul>
+<h2 id="the-two-basic-image-rendering-approaches">2.1 The Two Basic
+Image Rendering Approaches</h2>
+<ul class="incremental">
+<li>Rasterization: for each object, compute and set the pixels of the
+object to framebuffer.</li>
+<li>Ray tracing: for each pixel, create a ray from eye to the pixel,
+compute the color of an object that the ray hits, the set the color to
+the pixel.</li>
+</ul>
+<h2
+id="why-rasterization-is-the-most-commonly-used-graphics-approach">2.2
+Why Rasterization Is The Most Commonly Used Graphics Approach</h2>
+<p>Rasterization is the most commonly used graphics approach due to
+requiring orders of magnitude less processing power, which makes it
+preferable for the majority of graphics processing tasks.</p>
+<h2 id="the-cpus-role">3.1 The CPU’s Role</h2>
+<p>The CPU does model computing. It sends graphic object model data
+(e.g., vertices of a triangle, textures, lights) to video memory and
+instructions to GPU.</p>
+<h2 id="the-gpus-role">3.2 The GPU’s Role</h2>
+<p>The GPU processes object data, rasterizes (generates pixel data) and
+writes the pixel data to the framebuffer.</p>
+<h2 id="cc-opengl-installation">4.1 C/C++ &amp; OpenGL Installation</h2>
+<p>C/C++ are already installed, and eclipse is not being used. Instead I
+am using CLion and CMake.</p>
+<p>CMake code for the basic cube example:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.29</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(c_cube <span class="ot">C</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_C_STANDARD</span> 11)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">include_directories</span>(C:/dev/CP411/include/)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">link_directories</span>(C:/dev/CP411/lib/Release/x64)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">add_compile_definitions</span>(NDEBUG)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">add_compile_options</span>(-DGLEW_STATIC)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">c_cube</span> cube.c)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">c_cube</span> glew32s)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">c_cube</span> freeglut)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="kw">add_custom_command</span>(<span class="ot">TARGET</span> <span class="bn">c_cube</span> <span class="bn">POST_BUILD</span>            <span class="co"># Adds a post-build event</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">copy_if_different</span>  <span class="co"># which executes &quot;cmake - E copy_if_different...&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;C:/dev/CP411/bin/Release/x64/freeglut.dll&quot;</span>    <span class="co"># &lt;-- target to copy</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="ot">$&lt;</span><span class="kw">TARGET_FILE_DIR</span><span class="ot">:c_cube&gt;</span>                      <span class="co"># &lt;-- this is the output path</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Output:</p>
+<figure>
+<img src="./images/cube.png" style="height:50.0%" alt="cube" />
+<figcaption aria-hidden="true">cube</figcaption>
+</figure>
+<p>CMake code for the GLSL cube example:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode cmake"><code class="sourceCode cmake"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">cmake_minimum_required</span>(<span class="ot">VERSION</span> <span class="dt">3.29</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">project</span>(cube)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">set</span>(<span class="dv">CMAKE_CXX_STANDARD</span> 20)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">include_directories</span>(<span class="st">&quot;C:/dev/CP411/include/&quot;</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">link_directories</span>(<span class="st">&quot;C:/dev/CP411/lib/Release/x64&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">add_compile_definitions</span>(NDEBUG)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">add_compile_options</span>(-DGLEW_STATIC)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="kw">add_executable</span>(<span class="bn">cube</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        example6.cpp</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        InitShader.cpp</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">cube</span> glew32s)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="kw">target_link_libraries</span>(<span class="bn">cube</span> freeglut)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="kw">add_custom_command</span>(<span class="ot">TARGET</span> <span class="bn">cube</span> <span class="bn">POST_BUILD</span>              <span class="co"># Adds a post-build event</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">copy_if_different</span>  <span class="co"># which executes &quot;cmake - E copy_if_different...&quot;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;C:/dev/CP411/bin/Release/x64/freeglut.dll&quot;</span>    <span class="co"># &lt;-- target to copy</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="ot">$&lt;</span><span class="kw">TARGET_FILE_DIR</span><span class="ot">:cube&gt;</span>                        <span class="co"># &lt;-- this is the output path</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">add_custom_command</span>(<span class="ot">TARGET</span> <span class="bn">cube</span> <span class="bn">POST_BUILD</span>              <span class="co"># Adds a post-build event</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">copy_if_different</span>  <span class="co"># which executes &quot;cmake - E copy_if_different...&quot;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;C:/dev/CP411/examples/cube/vshader36.glsl&quot;</span>    <span class="co"># &lt;-- target to copy</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="ot">$&lt;</span><span class="kw">TARGET_FILE_DIR</span><span class="ot">:cube&gt;</span>                        <span class="co"># &lt;-- this is the output path</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="kw">add_custom_command</span>(<span class="ot">TARGET</span> <span class="bn">cube</span> <span class="bn">POST_BUILD</span>              <span class="co"># Adds a post-build event</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        <span class="bn">COMMAND</span> <span class="dv">${CMAKE_COMMAND}</span> <span class="bn">-E</span> <span class="bn">copy_if_different</span>  <span class="co"># which executes &quot;cmake - E copy_if_different...&quot;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;C:/dev/CP411/examples/cube/fshader36.glsl&quot;</span>    <span class="co"># &lt;-- target to copy</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="ot">$&lt;</span><span class="kw">TARGET_FILE_DIR</span><span class="ot">:cube&gt;</span>                        <span class="co"># &lt;-- this is the output path</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Output:</p>
+<figure>
+<img src="./images/glsl_cube.png" style="height:50.0%"
+alt="shaded cube" />
+<figcaption aria-hidden="true">shaded cube</figcaption>
+</figure>
+<h2 id="opengl-c">4.2 OpenGL C</h2>
+<p>For this, again CMake was used.</p>
+<p><img src="./images/blender.png" style="height:50.0%" alt="blender" />
+<!----></p>
+<h2 id="opengl-c-1">4.3 OpenGL C++</h2>
+<p><img src="./images/shapes.png" style="height:50.0%" alt="shapes" />
+<!----></p>

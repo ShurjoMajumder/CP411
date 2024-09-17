@@ -1,7 +1,7 @@
 #include "GL/glew.h"
 #include "GL/glut.h"
 
-#include <stdlib.h>
+#include <cstdlib>
 
 static int slices = 16;
 static int stacks = 16;
@@ -17,7 +17,7 @@ static void resize(int width, int height) {
     glFrustum(-ar, ar, -1.0, 1.0, 2.0, 100.0);
 
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity() ;
+    glLoadIdentity();
 }
 
 static void display() {
