@@ -123,16 +123,16 @@ add_custom_command(TARGET cube POST_BUILD              # Adds a post-build event
 
 Output:
 
-![shaded cube](./images/glsl_cube.png){ width=50%, height=50% }
+![shaded cube](./images/glsl_cube.png)
 
 ## 4.2 OpenGL C
 
 For this, again CMake was used.
 
-![blender](./images/blender.png){ width=50%, height=50% }
+![blender](./images/blender.png)
 <!---->
 
 ## 4.3 OpenGL C++
 
-![shapes](./images/shapes.png){ width=50%, height=50% }
+![shapes](./images/shapes.png)
 <!---->
