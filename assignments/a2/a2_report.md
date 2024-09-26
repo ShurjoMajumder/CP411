@@ -63,6 +63,39 @@ The data is available in this file: [Pixel Data](./assets/pixel_data.txt)
 
 The code used to generate the data: [Code](./midpoint_algorithm.py)
 
+---
+
+## 2.1 OpenGL Primitives
+
+## 2.2 Interactive Graphics
+
+## 2.3 Bitmap File I/O
+
+---
+
+## 3.1 Display Window & Menu
+
+## 3.2 Data Structures
+
+## 3.3 Draw Rectangle
+
+## 3.4 Draw Circle
+
+## 3.5 Edit Features
+
+## 3.6 Save/Open SVG Files
+
+## 3.7 Export to Bitmap File
+
+## 3.8 Circle & Square Artwork
+
+## 3.9 Program Design
+
+---
+
 ## References
+
+1. CP411-A2
+2. [Official OpenGL Wiki](https://www.khronos.org/opengl/wiki/primitive)
 
 [OGLW]: https://www.khronos.org/opengl/wiki/primitive

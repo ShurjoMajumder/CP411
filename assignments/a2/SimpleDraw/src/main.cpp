@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "GL/glu.h"
+#include "GL/glut.h"
 
 int main() {
     std::cout << "Hello, World!" << std::endl;
