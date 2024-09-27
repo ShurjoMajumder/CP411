@@ -14,8 +14,6 @@ add_compile_options(-DGLEW_STATIC)
 #target_link_libraries(SimpleDraw glew32s)
 #target_link_libraries(SimpleDraw freeglut)
 
-
-
 add_executable(Primitives Primitives/src/opengl_primitives.c)
 target_link_libraries(Primitives glew32s)
 target_link_libraries(Primitives freeglut)
