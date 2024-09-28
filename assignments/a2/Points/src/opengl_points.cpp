@@ -15,7 +15,7 @@ typedef struct dot {
 point list[MAX];
 int end = -1;
 
-void init(void)
+void init()
 {
   glClearColor(0.0, 0.0, 1.0, 1.0);
   glMatrixMode(GL_PROJECTION);
@@ -39,14 +39,14 @@ void drawPoint(int x, int y)
 {
   glBegin(GL_POINTS);
 	 glVertex2i(x, y);
-  glEnd( );
+  glEnd();
 }
 
 void drawPoints(point a[], int n)
 {
   glBegin(GL_POINTS);
      for (int i=0; i<=n; i++) glVertex2i(a[i].x, a[i].y);
-  glEnd( );
+  glEnd();
 }
 
 /*

@@ -22,6 +22,22 @@ add_executable(Interactive Interactive/src/opengl_menu.cpp)
 target_link_libraries(Interactive glew32s)
 target_link_libraries(Interactive freeglut)
 
+add_executable(Points Points/src/opengl_points.cpp)
+target_link_libraries(Points glew32s)
+target_link_libraries(Points freeglut)
+
+add_executable(Key Key/src/opengl_key.cpp)
+target_link_libraries(Key glew32s)
+target_link_libraries(Key freeglut)
+
+add_executable(Pick Pick/src/opengl_pick.cpp)
+target_link_libraries(Pick glew32s)
+target_link_libraries(Pick freeglut)
+
+add_executable(Bitmap Bitmap/src/opengl_bitmap.cpp)
+target_link_libraries(Bitmap glew32s)
+target_link_libraries(Bitmap freeglut)
+
 add_custom_command(TARGET Primitives POST_BUILD            # Adds a post-build event
         COMMAND ${CMAKE_COMMAND} -E copy_if_different  # which executes "cmake - E copy_if_different..."
         "C:/dev/CP411/bin/Release/x64/freeglut.dll"    # <-- target to copy
@@ -39,7 +55,3 @@ add_custom_command(TARGET Interactive POST_BUILD            # Adds a post-build 
 #        "C:/dev/CP411/bin/Release/x64/freeglut.dll"    # <-- target to copy
 #        $<TARGET_FILE_DIR:SimpleDraw>                      # <-- this is the output path
 #)
-
-add_executable(Points Points/src/opengl_points.cpp)
-target_link_libraries(Points glew32s)
-target_link_libraries(Points freeglut)
