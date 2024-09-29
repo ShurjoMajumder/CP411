@@ -38,6 +38,8 @@ void colorSubMenu(GLint colorOption)
             break;
         case 3:
         {red = 1.0;  green = 1.0;  blue = 1.0;}
+        default:
+            break;
     }
     glutPostRedisplay( );
 }

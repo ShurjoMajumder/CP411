@@ -10,9 +10,17 @@ link_directories(C:/dev/CP411/lib/Release/x64)
 add_compile_definitions(NDEBUG)
 add_compile_options(-DGLEW_STATIC)
 
-##add_executable(SimpleDraw SimpleDraw/src/main.cpp)
-#target_link_libraries(SimpleDraw glew32s)
-#target_link_libraries(SimpleDraw freeglut)
+add_executable(
+        SimpleDraw SimpleDraw/src/simple_draw.cpp
+        SimpleDraw/src/sd_callbacks.cpp
+        SimpleDraw/src/sd_callbacks.h
+        SimpleDraw/src/ShaderProgram.cpp
+        SimpleDraw/src/ShaderProgram.h
+        SimpleDraw/src/utils.cpp
+        SimpleDraw/src/utils.h
+)
+target_link_libraries(SimpleDraw glew32s)
+target_link_libraries(SimpleDraw freeglut)
 
 add_executable(Primitives Primitives/src/opengl_primitives.c)
 target_link_libraries(Primitives glew32s)
@@ -37,6 +45,24 @@ target_link_libraries(Pick freeglut)
 add_executable(Bitmap Bitmap/src/opengl_bitmap.cpp)
 target_link_libraries(Bitmap glew32s)
 target_link_libraries(Bitmap freeglut)
+
+add_custom_command(TARGET SimpleDraw POST_BUILD            # Adds a post-build event
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different  # which executes "cmake - E copy_if_different..."
+        "C:/dev/CP411/bin/Release/x64/freeglut.dll"    # <-- target to copy
+        $<TARGET_FILE_DIR:SimpleDraw>                      # <-- this is the output path
+)
+
+add_custom_command(TARGET SimpleDraw POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "C:/dev/CP411/assignments/a2/SimpleDraw/src/traingle_fragment.frag"
+        $<TARGET_FILE_DIR:SimpleDraw>
+)
+
+add_custom_command(TARGET SimpleDraw POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "C:/dev/CP411/assignments/a2/SimpleDraw/src/triangle_basic.vert"
+        $<TARGET_FILE_DIR:SimpleDraw>
+)
 
 add_custom_command(TARGET Primitives POST_BUILD            # Adds a post-build event
         COMMAND ${CMAKE_COMMAND} -E copy_if_different  # which executes "cmake - E copy_if_different..."

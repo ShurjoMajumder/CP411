@@ -203,7 +203,7 @@ int loadBitmap(const char *filename, GLubyte **bitsp, BITMAPINFOHEADER **bihp)
     return 1;
 }
 
-void drawTriangle(void)
+void drawTriangle()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glShadeModel(renderingMode); //  Set fill method for triangle.
