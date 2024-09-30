@@ -18,6 +18,10 @@ add_executable(
         SimpleDraw/src/ShaderProgram.h
         SimpleDraw/src/utils.cpp
         SimpleDraw/src/utils.h
+        SimpleDraw/src/CanvasItemDequeue.cpp
+        SimpleDraw/src/CanvasItemDequeue.h
+        SimpleDraw/src/CanvasItem.cpp
+        SimpleDraw/src/CanvasItem.h
 )
 target_link_libraries(SimpleDraw glew32s)
 target_link_libraries(SimpleDraw freeglut)
