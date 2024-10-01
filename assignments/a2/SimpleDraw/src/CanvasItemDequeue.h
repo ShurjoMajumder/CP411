@@ -7,33 +7,33 @@
 
 #include <memory>
 #include <vector>
+#include "CanvasItem.h"
 
-
-struct Vertex {
-    float x, y;
-};
 
 class CanvasItemDequeue {
 private:
-    typedef struct VertexNode {
-        const Vertex *item;
-        std::shared_ptr<Vertex> prev;
-        std::shared_ptr<Vertex> next;
-    } m_nodes;
+    struct CanvasItemNode {
+        const CanvasItem *item;
+        CanvasItemNode *prev;
+        CanvasItemNode *next;
+    };
 
-    std::vector<Vertex> m_vertices;
-    VertexNode *m_front, *m_back;
+    std::vector<CanvasItemNode> m_canvasItems;
+    CanvasItemNode *m_front;
+    CanvasItemNode *m_back;
 
 public:
     CanvasItemDequeue();
 
-    const Vertex* Enqueue(Vertex);
-    int Dequeue();
+    const CanvasItem* Enqueue(CanvasItem&);
+    const CanvasItem* Dequeue();
+    const CanvasItem* PopAt(int);
 
-    const VertexNode *Front();
-    const VertexNode *Back();
+    const CanvasItemNode *Front() const;
+    const CanvasItemNode *Back() const;
+    size_t Length() const;
 
-    const Vertex *GetBuffer();
+    const Vertex *GetBuffer() const;
 };
 
 
