@@ -3,8 +3,8 @@
 in vec4 fillColor;
 in vec4 strokeColor;
 
-out vec4 fragment;
+out vec4 FragColor;
 
 void main() {
-
+    FragColor = fillColor;
 }

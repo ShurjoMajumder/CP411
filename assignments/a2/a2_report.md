@@ -67,9 +67,15 @@ The code used to generate the data: [Code](./midpoint_algorithm.py)
 
 ## 2.1 OpenGL Primitives
 
+![OpenGL Primitives](./assets/Primitives.png)
+
 ## 2.2 Interactive Graphics
 
+![OpenGL Points](./assets/Points.png)
+
 ## 2.3 Bitmap File I/O
+
+![Output](./cmake-build-debug-visual-studio/output.bmp)
 
 ---
 

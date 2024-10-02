@@ -7,32 +7,25 @@
 #include <iostream>
 
 #include "sd_callbacks.h"
-#include "ShaderProgram.h"
+#include "CanvasItem.h"
 
+static CanvasItem* testQuad = nullptr;
 
 void SimpleDraw::init() {
-    std::shared_ptr<ShaderProgram> shaderProgram = ShaderProgram::LoadShader("./triangle_basic.vert", "./triangle_fragment.frag");
-
-    unsigned int VAO, VBO;
-
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)nullptr);
-    glEnableVertexAttribArray(0);
-
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    shaderProgram->Use();
-    glBindVertexArray(VAO);
+    testQuad = new CanvasItem(
+            glm::vec3(0, 0, 0),
+            glm::vec4(1, 1, 1, 1),
+            glm::vec4(1, 1, 1, 1),
+            "general.vert",
+            "quad.frag"
+    );
 }
 
 void SimpleDraw::display_callback() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    testQuad->Draw();
     glutSwapBuffers();
+    std::cout << "Frame drawn" << std::endl;
 }
 
 void SimpleDraw::mouse_callback() {
@@ -44,4 +37,5 @@ void SimpleDraw::main_menu_callback() {
 }
 
 void SimpleDraw::cleanup() {
+    delete testQuad;
 }

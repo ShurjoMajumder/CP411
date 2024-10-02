@@ -2,7 +2,6 @@
 // Created by shurj on 28-Sep-2024.
 //
 
-#include <fstream>
 #include <iostream>
 #include "utils.h"
 #include "ShaderProgram.h"

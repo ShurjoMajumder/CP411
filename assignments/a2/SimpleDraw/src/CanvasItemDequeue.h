@@ -7,7 +7,10 @@
 
 #include <memory>
 #include <vector>
-#include "CanvasItem.h"
+
+#ifndef SHAPES_CANVASITEM_H
+  #include "CanvasItem.h"
+#endif
 
 
 class CanvasItemDequeue {

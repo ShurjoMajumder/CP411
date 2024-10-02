@@ -7,10 +7,8 @@ layout (location = 2) in vec4 i_strokeColor;
 out vec4 fillColor;
 out vec4 strokeColor;
 
-uniform mat4 MVP;
-
 void main() {
-    gl_Position = MVP * vec4(position, 1.0);
+    gl_Position = vec4(position, 1.0);
     fillColor = i_fillColor;
     strokeColor = i_strokeColor;
 }

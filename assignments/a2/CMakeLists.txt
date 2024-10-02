@@ -58,13 +58,13 @@ add_custom_command(TARGET SimpleDraw POST_BUILD            # Adds a post-build e
 
 add_custom_command(TARGET SimpleDraw POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "C:/dev/CP411/assignments/a2/SimpleDraw/src/traingle_fragment.frag"
+        "C:/dev/CP411/assignments/a2/SimpleDraw/src/quad.frag"
         $<TARGET_FILE_DIR:SimpleDraw>
 )
 
 add_custom_command(TARGET SimpleDraw POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "C:/dev/CP411/assignments/a2/SimpleDraw/src/triangle_basic.vert"
+        "C:/dev/CP411/assignments/a2/SimpleDraw/src/general.vert"
         $<TARGET_FILE_DIR:SimpleDraw>
 )
 
