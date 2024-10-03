@@ -17,9 +17,9 @@
 
 
 struct Vertex {
-    float x, y, z;
-    float fill_r, fill_g, fill_b, fill_a;
-    float stroke_r, stroke_g, stroke_b, stroke_a;
+    glm::vec3 position;
+    glm::vec4 fillColor;
+    glm::vec4 strokeColor;
 };
 
 
@@ -39,8 +39,8 @@ private:
     const GLuint VERTEX_FILL_LOC     = 1;
     const GLuint VERTEX_STROKE_LOC   = 2;
 
-    static glm::vec3 s_quadVertices[];
-    static GLuint s_quadIndices[];
+    static glm::vec3 s_quadVertices[4];
+    static GLuint s_quadIndices[6];
 
     glm::vec3 m_position{};
     glm::vec4 m_fillColor{};
