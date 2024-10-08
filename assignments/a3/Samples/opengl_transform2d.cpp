@@ -65,7 +65,7 @@ void display(void) {
         glPopMatrix();
     }
 
-        // 2D rotation
+    // 2D rotation
     else if (transType == 2) {
         strcpy(str, "Rotation");
         message(str);
@@ -76,7 +76,7 @@ void display(void) {
         glPopMatrix();
     }
 
-        // 2D scale
+    // 2D scale
     else if (transType == 3) {
         strcpy(str, "Scaling");
         message(str);
@@ -87,7 +87,7 @@ void display(void) {
         glPopMatrix();
     }
 
-        // Composite transformation
+    // Composite transformation
     else if (transType == 4) {
         strcpy(str, "Scale->Translate");
         message(str);
