@@ -88,6 +88,7 @@ void Mesh::readMesh(string fname) {
 		makeEmpty();
 		return;
 	}
+
 	inStream >> numVerts >> numNorms >> numFaces;
 
 	// make arrays for vertices, normals, and faces

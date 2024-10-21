@@ -2,9 +2,8 @@
 // Created by shurj on 28-Sep-2024.
 //
 
-#include <iostream>
-#include "utils.h"
 #include "ShaderProgram.h"
+
 
 
 ShaderProgram::ShaderProgram(const std::string &vs_path, const std::string &fs_path) {
@@ -38,14 +37,42 @@ ShaderProgram::ShaderProgram(const std::string &vs_path, const std::string &fs_p
     glDeleteShader(fragmentShader);
 }
 
-void ShaderProgram::Use() const {
-    glUseProgram(m_id);
+ShaderProgram::ShaderProgram() = default;
+
+ShaderProgram::ShaderProgram(const ShaderProgram &program) {
+    m_id = program.m_id;
 }
 
 ShaderProgram::~ShaderProgram() {
     glDeleteProgram(m_id);  // delete this program when finished.
 }
 
+ShaderProgram &ShaderProgram::operator=(const ShaderProgram& other) = default;
+
 ShaderProgram::operator GLuint() const {
     return m_id;
 }
+
+void ShaderProgram::Use() const {
+    glUseProgram(m_id);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::mat4x4 &value) const {
+    GLint uniformLocation = glGetUniformLocation(m_id, name.c_str());
+    glProgramUniformMatrix4fv(m_id, uniformLocation, 1, GL_FALSE, &value[0][0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, const glm::mat4x4 &&value) const {
+    GLint uniformLocation = glGetUniformLocation(m_id, name.c_str());
+    glProgramUniformMatrix4fv(m_id, uniformLocation, 1, GL_FALSE, &value[0][0]);
+}
+
+void ShaderProgram::SetUniform(const std::string &name, GLfloat value) const {
+    GLint uniformLocation = glGetUniformLocation(m_id, name.c_str());
+    glProgramUniform1f(m_id, uniformLocation, value);
+}
+
+GLuint ShaderProgram::GetId() const {
+    return m_id;
+}
+

@@ -3,6 +3,8 @@ project(a3)
 
 set(CMAKE_CXX_STANDARD 14)
 
+include(FetchContent)
+
 include_directories(C:/dev/CP411/include/)
 link_directories(C:/dev/CP411/lib/Release/x64)
 
@@ -30,11 +32,12 @@ target_link_libraries(Mesh glew32s)
 target_link_libraries(Mesh freeglut)
 
 add_executable(SimpleView SimpleView1/src/Matrix4x4.cpp SimpleView1/src/Matrix4x4.h
-        SimpleView1/src/Shape.cpp
-        SimpleView1/src/Shape.h
-        SimpleView1/src/ObjectMesh.cpp
-        SimpleView1/src/ObjectMesh.h)
+        SimpleView1/src/ShaderProgram.cpp
+        SimpleView1/src/ObjectMesh.h
+        SimpleView1/src/utils.cpp
+        SimpleView1/src/SimpleView.cpp
+)
 
 target_link_libraries(SimpleView glew32s)
 target_link_libraries(SimpleView freeglut)
-
+target_link_libraries(SimpleView glfw3)
