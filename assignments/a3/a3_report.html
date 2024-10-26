@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Shurjo Majumder, ID: 169035249" />
+  <title>Assignment A3 Report</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Assignment A3 Report</h1>
+<p class="author">Shurjo Majumder, ID: 169035249</p>
+<p class="date">Fall 2024</p>
+</header>
+<p>Check <a href="readme.txt">readme.txt</a> for course work statement
+and self-evaluation.</p>
+<h2 id="q1-transformations-in-cg-description">Q1 Transformations in CG
+(description)</h2>
+<h3 id="q1.1-principle-of-cg-transformations">Q1.1 Principle of CG
+transformations</h3>
+<ol class="incremental" type="1">
+<li>What are the three basic transformations?
+<ol class="incremental" type="1">
+<li>Rotation</li>
+<li>Translation</li>
+<li>Scaling</li>
+</ol></li>
+<li>What is a composite transformation?
+<ol class="incremental" type="1">
+<li>One or more transformations combined together.</li>
+</ol></li>
+<li>Why Homogeneous coordinate system is used in transformation
+representation and computing?
+<ol class="incremental" type="1">
+<li>Because they’re easier to work with, and are less error prone.</li>
+</ol></li>
+</ol>
+<h3 id="q1.2-hand-on-2d-transformations">Q1.2 Hand on 2D
+transformations</h3>
+<ol class="incremental" type="1">
+<li>Describe the sequence of basic 2D transformations to transform
+triangle ABC to triangle A’B’C’, namely, A to A’, B to B’, and C to C’,
+by writing the transformation notations and matrices in Homogeneous of
+the above basic transformations. Hint: it needs 3 basic
+transformations.</li>
+</ol>
+<pre><code>Translate(X=1, Y=-3)
+Rotate(180 degrees)
+Scale(X=4/3, Y=1/2)</code></pre>
+<ol class="incremental" start="2" type="1">
+<li>Compute the transformation matrix of the composite
+transformation.</li>
+</ol>
+<p>Column major (imagine the Latex rendered):</p>
+<p><img style="vertical-align:middle"
+src="https://latex.codecogs.com/png.latex?%5Cdisplaystyle%20%5Cbegin%7Bmatrix%7D%0A-%5Cfrac%7B4%7D%7B3%7D%20%26%200%20%26%201%20%5C%5C%5C%5C%20%20%0A0%20%26%20-%5Cfrac%7B1%7D%7B2%7D%20%26%20-3%20%5C%5C%5C%5C%20%20%0A0%20%26%200%20%26%201%0A%5Cend%7Bmatrix%7D"
+alt="\begin{matrix}
+-\frac{4}{3} &amp; 0 &amp; 1 \\\\  
+0 &amp; -\frac{1}{2} &amp; -3 \\\\  
+0 &amp; 0 &amp; 1
+\end{matrix}" title="\begin{matrix}
+-\frac{4}{3} &amp; 0 &amp; 1 \\\\  
+0 &amp; -\frac{1}{2} &amp; -3 \\\\  
+0 &amp; 0 &amp; 1
+\end{matrix}" class="math display" /></p>
+<ol class="incremental" start="3" type="1">
+<li>Apply the composite transformation matrix to A, B, C to verify that
+A, B, C are transformed to A’, B’, C’, respectively.</li>
+</ol>
+<p>A -&gt; (0, 0)<br />
+B -&gt; (4, 0)<br />
+C -&gt; (0, 1)</p>
+<h2 id="q2-cg-transformation-programming-lab-practice">Q2 CG
+transformation programming (lab practice)</h2>
+<h3 id="q2.1-warm-up-with-c">Q2.1 Warm up with C++</h3>
+<p>Yes.</p>
+<figure>
+<img src="./assets/warmup.png" alt="Warmup" />
+<figcaption aria-hidden="true">Warmup</figcaption>
+</figure>
+<h3 id="q2.2-2d-transformations">Q2.2 2D transformations</h3>
+<figure>
+<img src="./assets/Transform2D.png" alt="2D" />
+<figcaption aria-hidden="true">2D</figcaption>
+</figure>
+<h3 id="q2.3-3d-objects-and-transformations">Q2.3 3D objects and
+transformations</h3>
+<figure>
+<img src="./assets/Transform3D.png" alt="3D" />
+<figcaption aria-hidden="true">3D</figcaption>
+</figure>
+<h3 id="q2.4-mesh-object-model">Q2.4 Mesh object model</h3>
+<figure>
+<img src="./assets/Mesh.png" alt="Mesh" />
+<figcaption aria-hidden="true">Mesh</figcaption>
+</figure>
+<h2 id="q3-simpleview1---transformations-programming">Q3 SimpleView1 -
+transformations (programming)</h2>
+<p>I have completed this section, however, despite my best efforts, my
+anti-virus keeps shooting the program down. I am not able to run this
+program on my machine. Perhaps it can run on another? I don’t know.</p>
+<p>The program does work when using GLFW as the windowing system, but
+fails when using FreeGLUT.</p>
+<h3 id="references">References</h3>
+<ol class="incremental" type="1">
+<li>CP411 a3</li>
+</ol>
+</body>
+</html>

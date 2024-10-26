@@ -36,12 +36,12 @@ Scale(X=4/3, Y=1/2)
 
 2. Compute the transformation matrix of the composite transformation.
 
-Column major:
+Column major (imagine the Latex rendered):
 
 $$
 \begin{matrix}
--\frac{4}{3} & 0 & 1 \\
-0 & -\frac{1}{2} & -3 \\
+-\frac{4}{3} & 0 & 1 \\\\  
+0 & -\frac{1}{2} & -3 \\\\  
 0 & 0 & 1
 \end{matrix}
 $$
