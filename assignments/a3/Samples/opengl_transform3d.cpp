@@ -103,7 +103,7 @@ void message(char str[]) {
     }
 }
 
-void display(void) {
+void DisplayCallback(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // draw WCS axis
     glColor3f(1.0, 0.0, 0.0);
@@ -221,7 +221,7 @@ int main(int argc, char **argv) {
     glutInitWindowSize(800, 800);
     glutCreateWindow("3D transformations");
     init();
-    glutDisplayFunc(display);
+    glutDisplayFunc(DisplayCallback);
 
     GLint object_Menu = glutCreateMenu(objSubMenu);
     glutAddMenuEntry("Cube1", 1);

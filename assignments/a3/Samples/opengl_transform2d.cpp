@@ -13,7 +13,7 @@ GLint transType = 1;
 char str[100];
 
 void init(void) {
-    glClearColor(1.0, 1.0, 1.0, 0.0);  /* Set display-window background color to yellow */
+    glClearColor(1.0, 1.0, 1.0, 0.0);  /* Set DisplayCallback-window background color to yellow */
     glMatrixMode(GL_PROJECTION);       /* Set projection parameters */
     gluOrtho2D(-winWidth/2, winWidth/2, -winHeight/2, winHeight/2); /* Set clipping window */
 }
@@ -44,8 +44,8 @@ void message(char str[]) {
     }
 }
 
-void display(void) {
-    glClear(GL_COLOR_BUFFER_BIT);  // Clear display window.
+void DisplayCallback(void) {
+    glClear(GL_COLOR_BUFFER_BIT);  // Clear DisplayCallback window.
     GLfloat xf, yf, sx, sy;
     glColor3f(0.0, 0.0, 0.0);
     lineSegment(0, -winHeight / 2, 0, winHeight / 2);
@@ -161,7 +161,7 @@ int main(int argc, char** argv) {
     glutCreateWindow("2D transformations");
 
     init();
-    glutDisplayFunc(display);         /* Send graphics to display window. */
+    glutDisplayFunc(DisplayCallback);         /* Send graphics to DisplayCallback window. */
 
     glutCreateMenu(mainMenuFcn);      /* Create main pop-up menu */
     glutAddMenuEntry("Translate", 1);

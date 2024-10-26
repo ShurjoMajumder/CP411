@@ -39,11 +39,30 @@ public:
     ShaderProgram(const ShaderProgram& program);
 
     /**
+     * Move constructor.
+     */
+    ShaderProgram(ShaderProgram&& program) noexcept;
+
+    /**
      * Frees all memory associated with the shader.
      */
     ~ShaderProgram();
 
-    ShaderProgram& operator=(const ShaderProgram& other);
+    /**
+     * Move assignment operator.
+     *
+     * @param other
+     * @return
+     */
+    ShaderProgram& operator=(const ShaderProgram& other) noexcept;
+
+    /**
+     * Move assignment operator.
+     *
+     * @param other
+     * @return
+     */
+    ShaderProgram& operator=(ShaderProgram&& other) noexcept;
 
     explicit operator GLuint () const;
 

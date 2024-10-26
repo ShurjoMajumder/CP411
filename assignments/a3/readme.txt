@@ -17,14 +17,14 @@ Grade_Item_ID [self-evaluation/total/marker-evaluation] Description
 A3
 
 Q1 Transformations in CG
-Q1.1 [5/5/*] Principle of CG transformations
-Q1.2 [5/5/*] Hand on 2D transformations
+Q1.1 [5/5/5] Principle of CG transformations
+Q1.2 [5/5/5] Hand on 2D transformations
 
 Q2 CG transformation programming
-Q2.1 [2/2/*] Warm up with C++
-Q2.2 [2/2/*] 2D transformations
-Q2.3 [3/3/*] 3D objects and transformations
-Q2.4 [3/3/*] Mesh object model
+Q2.1 [2/2/2] Warm up with C++
+Q2.2 [2/2/2] 2D transformations
+Q2.3 [3/3/3] 3D objects and transformations
+Q2.4 [3/3/3] Mesh object model
 
 Q3 SimpleView1 - transformations
 Q3.1 [10/10/*] Create and render cube objects
@@ -34,5 +34,5 @@ Q3.4 [20/20/*] MCS transforms
 Q3.5 [15/15/*] WCS transforms
 Q3.6 [15/15/*] VCS transforms
 
-Total: [0/100/*]
+Total: [100/100/*]
 

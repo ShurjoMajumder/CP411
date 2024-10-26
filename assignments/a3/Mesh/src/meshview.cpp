@@ -13,7 +13,7 @@ GLsizei winWidth = 600, winHeight = 600;
 GLint transType = 0;
 char str[100];
 
-Mesh * meshObj1, *meshObj2, *meshObj3, *selectObj;
+Mesh * meshObj1, *meshObj2, *meshObj3, *shape;
 
 void lineSegment(float x1, float y1, float z1, float x2, float y2, float z2) {
 	glBegin(GL_LINES);
@@ -22,7 +22,7 @@ void lineSegment(float x1, float y1, float z1, float x2, float y2, float z2) {
 	glEnd();
 }
 
-void display(void) {
+void DisplayCallback(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glColor3f(1.0, 0.0, 0.0);
@@ -33,7 +33,7 @@ void display(void) {
 	lineSegment(0, 0, -2, 0, 0, 4); /* z-axis in blue */
 
 	glColor3f(1.0, 1.0, 0.0);
-	if (selectObj) selectObj->draw();
+	if (shape) shape->draw();
 
 	glFlush();
 	glutSwapBuffers();
@@ -59,19 +59,19 @@ void init(void) {
 	meshObj1 = new Mesh("BARN.3VN");
 	meshObj2 = new Mesh("BUCK.3VN");
 	meshObj3 = new Mesh("PAWN.3VN");
-	selectObj = meshObj1;
+    shape = meshObj1;
 }
 
 void renderFcn(GLint option) {
 	switch (option) {
 	case 1:
-		selectObj->setRenderMode(Mesh::MODE_WIRE);
+		shape->setRenderMode(Mesh::MODE_WIRE);
 	  break;
 	case 2:
-		selectObj->setRenderMode(Mesh::MODE_SOLID);
+		shape->setRenderMode(Mesh::MODE_SOLID);
 		break;
 	case 3:
-		selectObj->setRenderMode(Mesh::MODE_WIRE_SOLID);
+		shape->setRenderMode(Mesh::MODE_WIRE_SOLID);
 	   break;
 	}
 	glutPostRedisplay();
@@ -80,13 +80,13 @@ void renderFcn(GLint option) {
 void mainMenuFcn(GLint option) {
 	switch (option) {
 	case 1:
-		selectObj = meshObj1;
+        shape = meshObj1;
 	  break;
 	case 2:
-		selectObj = meshObj2;
+        shape = meshObj2;
 	  break;
 	case 3:
-		selectObj = meshObj3;
+        shape = meshObj3;
 	  break;
 	}
 	glutPostRedisplay();
@@ -100,7 +100,7 @@ int main(int argc, char** argv) {
 	glutCreateWindow("Mesh object model");
 
     init();
-	glutDisplayFunc(display);         /* Send graphics to display window. */
+    glutDisplayFunc(DisplayCallback);         /* Send graphics to DisplayCallback window. */
 
     GLint renderMode_Menu = glutCreateMenu(renderFcn);
 	glutAddMenuEntry("Wire", 1);

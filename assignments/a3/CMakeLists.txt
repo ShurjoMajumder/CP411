@@ -33,9 +33,15 @@ target_link_libraries(Mesh freeglut)
 
 add_executable(SimpleView SimpleView1/src/Matrix4x4.cpp SimpleView1/src/Matrix4x4.h
         SimpleView1/src/ShaderProgram.cpp
-        SimpleView1/src/ObjectMesh.h
         SimpleView1/src/utils.cpp
         SimpleView1/src/SimpleView.cpp
+        SimpleView1/src/Shape.cpp
+        SimpleView1/src/Camera.cpp
+        SimpleView1/src/World.cpp
+        SimpleView1/src/Cube.cpp
+        SimpleView1/src/Pyramid.cpp
+        SimpleView1/src/House.cpp
+        SimpleView1/src/Menu.cpp
 )
 
 target_link_libraries(SimpleView glew32s)
