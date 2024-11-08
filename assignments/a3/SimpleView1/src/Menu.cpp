@@ -62,11 +62,11 @@ void DisplayCallback() {
 
 void MouseActionCallback(int button, int state, int xMouse, int yMouse) {
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        MenuData.isInMove = 1;
+        MenuData.isInMove = true;
         MenuData.xbegin = xMouse;
     }
     if (button == GLUT_LEFT_BUTTON && state == GLUT_UP) {
-        MenuData.isInMove = 0;
+        MenuData.isInMove = false;
     }
 }
 
